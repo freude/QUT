@@ -1,0 +1,31 @@
+[project]
+name = "QUT"
+version = "1.0.0"
+description = "Python framework for quantum unit tests"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.14"
+
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+dependencies = [
+    "colorama",
+    "matplotlib",
+    "numpy",
+    "qiskit",
+    "qiskit_aer",
+    "qiskit_experiments",
+    "qiskit_ibm_runtime",
+    "scikit_learn",
+    "scipy",
+    "setuptools",
+]
+
+[project.urls]
+Homepage = "https://github.com/freude/QUT"
