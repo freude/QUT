@@ -6,6 +6,7 @@ from qut import QUTest
 from make_plots import make_plot2
 from qiskit_ibm_runtime.fake_provider import FakeSydneyV2
 from qiskit_aer.noise import NoiseModel
+from qut.aux_functions import print_pretty_evaluation_results
 
 
 def subprogram1(circuit):
@@ -126,7 +127,7 @@ class MyTests3(QUTest):
 
 def main():
 
-    shots = 1e3
+    shots = 1e4
 
     print("---------------------------------")
     print("Test on the backend without noise")
@@ -199,21 +200,37 @@ if __name__ == '__main__':
 
     print('----------------------------')
 
-    print("FNR", 1.0 - results_noiseless1[0])
-    print("FNR", 1.0 - results_noiseless2[0])
-    print("FNR", 1.0 - results_noiseless3[0])
-    print("FNR", 1.0 - results_noise1[0])
-    print("FNR", 1.0 - results_noise2[0])
-    print("FNR", 1.0 - results_noise3[0])
+
+    fnr_noiseless1 = 1.0 - results_noiseless1[0]
+    fnr_noiseless2 = 1.0 - results_noiseless2[0]
+    fnr_noiseless3 = 1.0 - results_noiseless3[0]
+    fnr_noise1 = 1.0 - results_noise1[0]
+    fnr_noise2 = 1.0 - results_noise2[0]
+    fnr_noise3 = 1.0 - results_noise3[0]
+
+
+    print("FNR", fnr_noiseless1)
+    print("FNR", fnr_noiseless2)
+    print("FNR", fnr_noiseless3)
+    print("FNR", fnr_noise1)
+    print("FNR", fnr_noise2)
+    print("FNR", fnr_noise3)
 
     print('----------------------------')
 
-    print("FPR", np.average(results_noiseless1[results_noiseless1 < (1-thr)]))
-    print("FPR", np.average(results_noiseless2[results_noiseless2 < (1-thr)]))
-    print("FPR", np.average(results_noiseless3[results_noiseless3 < (1-thr)]))
-    print("FPR", np.average(results_noise1[results_noise1 < (1-thr)]))
-    print("FPR", np.average(results_noise2[results_noise2 < (1-thr)]))
-    print("FPR", np.average(results_noise3[results_noise3 < (1-thr)]))
+    fpr_noiseless1 = np.average(results_noiseless1[results_noiseless1 < (1-thr)])
+    fpr_noiseless2 = np.average(results_noiseless2[results_noiseless2 < (1-thr)])
+    fpr_noiseless3 = np.average(results_noiseless3[results_noiseless3 < (1-thr)])
+    fpr_noise1 = np.average(results_noise1[results_noise1 < (1-thr)])
+    fpr_noise2 = np.average(results_noise2[results_noise2 < (1-thr)])
+    fpr_noise3 = np.average(results_noise3[results_noise3 < (1-thr)])
+
+    print("FPR", fpr_noiseless1)
+    print("FPR", fpr_noiseless2)
+    print("FPR", fpr_noiseless3)
+    print("FPR", fpr_noise1)
+    print("FPR", fpr_noise2)
+    print("FPR", fpr_noise3)
 
     plt.figure(1)
     plt.plot(results_noiseless1)
@@ -266,59 +283,23 @@ if __name__ == '__main__':
     print("Mutants eliminated, %", len(results_noise2) / num_mutants)
     print("Mutants eliminated, %", len(results_noise3) / num_mutants)
 
+    print_pretty_evaluation_results("Noiseless",
+                                    len(results_noiseless1) / num_mutants,
+                                    len(results_noiseless2) / num_mutants,
+                                    len(results_noiseless3) / num_mutants,
+                                    np.average(results_noiseless1),
+                                    np.average(results_noiseless2),
+                                    np.average(results_noiseless3),
+                                    fnr_noiseless1, fnr_noiseless2, fnr_noiseless3,
+                                    fpr_noiseless1, fpr_noiseless2, fpr_noiseless3)
 
-    data1 = [
-        ["Pearson’s 𝜒2-test         ",  len(results_noiseless1) / num_mutants, np.average(results_noiseless1), 1.0 - results_noiseless1[0], np.average(results_noiseless1[results_noiseless1 < (1-thr)])],
-        ["State tomography          ",   len(results_noiseless2) / num_mutants, np.average(results_noiseless2), 1.0 - results_noiseless2[0], np.average(results_noiseless2[results_noiseless2 < (1-thr)])],
-        ["Process tomography        ", len(results_noiseless3) / num_mutants, np.average(results_noiseless3), 1.0 - results_noiseless3[0], np.average(results_noiseless3[results_noiseless3 < (1-thr)])]
-    ]
+    print_pretty_evaluation_results("With realistic noise simulations",
+                                    len(results_noise1) / num_mutants,
+                                    len(results_noise2) / num_mutants,
+                                    len(results_noise3) / num_mutants,
+                                    np.average(results_noise1),
+                                    np.average(results_noise2),
+                                    np.average(results_noise3),
+                                    fnr_noise1, fnr_noise2, fnr_noise3,
+                                    fpr_noise1, fpr_noise2, fpr_noise3)
 
-    # Define header and format template:
-    # Left-align Name (10 chars), Right-align Age (5 chars), Left-align City (15 chars)
-    row_format1 = "{:<15} {:<15} {:<15} {:<15} {:<15}"
-    row_format = "{:<15} {:<16.2f} {:<16.2f} {:<16.2f} {:<16.2f}"
-
-    print("-" * 90) # Separator line
-    print(" " * 39, "Noiseless")
-    print("-" * 90) # Separator line
-    print(row_format1.format("Protocol             ",
-                             "Fraction killed",
-                             "        J       ",
-                             "    1-alpha    ",
-                             "       beta     "))
-
-    print("-" * 90) # Separator line
-
-    for row in data1:
-        print(row_format.format(*row))
-
-    print("-" * 90) # Separator line
-    print("\n")
-
-    data1 = [
-        ["Pearson’s 𝜒2-test         ",  len(results_noise1) / num_mutants, np.average(results_noise1), 1.0 - results_noise1[0], np.average(results_noise1[results_noise1 < (1-thr)])],
-        ["State tomography          ",   len(results_noise2) / num_mutants, np.average(results_noise2), 1.0 - results_noise2[0], np.average(results_noise2[results_noise2 < (1-thr)])],
-        ["Process tomography        ", len(results_noise3) / num_mutants, np.average(results_noise3), 1.0 - results_noise3[0], np.average(results_noise3[results_noise3 < (1-thr)])]
-    ]
-
-    # Define header and format template:
-    # Left-align Name (10 chars), Right-align Age (5 chars), Left-align City (15 chars)
-    row_format1 = "{:<15} {:<15} {:<15} {:<15} {:<15}"
-    row_format = "{:<15} {:<16.2f} {:<16.2f} {:<16.2f} {:<16.2f}"
-
-    print("-" * 90) # Separator line
-    print(" " * 39, "Noiseless")
-    print("-" * 90) # Separator line
-    print(row_format1.format("Protocol             ",
-                             "Fraction killed",
-                             "        J       ",
-                             "    1-alpha    ",
-                             "       beta     "))
-
-    print("-" * 90) # Separator line
-
-    for row in data1:
-        print(row_format.format(*row))
-
-    print("-" * 90) # Separator line
-    print("\n")

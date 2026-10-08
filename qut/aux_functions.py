@@ -98,3 +98,36 @@ def likelihood(aa: np.ndarray, bb: np.ndarray) -> float:
         ans *= (ans1 * ans2)
 
     return ans
+
+
+def print_pretty_evaluation_results(title, fr1, fr2, fr3, j1, j2, j3, fnr1, fnr2, fnr3, fpr1, fpr2, fpr3):
+
+    line_lenght = 78
+
+    data1 = [
+        ["Pearson’s 𝜒2-test       ",  fr1, j1, fnr1, fpr1],
+        ["State tomography        ",  fr2, j2, fnr2, fpr2],
+        ["Process tomography      ",  fr3, j3, fnr3, fpr3]
+    ]
+
+    # Define header and format template:
+    # Left-align Name (10 chars), Right-align Age (5 chars), Left-align City (15 chars)
+    row_format1 = "{:<15} {:<15} {:<15} {:<15} {:<15}"
+    row_format = "{:<15} {:<15.2f} {:<15.2f} {:<15.2f} {:<15.2f}"
+
+    # print("-" * line_lenght) # Separator line
+    print(" " * int(0.5 * (line_lenght - len(title)) - 1), title)
+    print("-" * line_lenght) # Separator line
+    print(row_format1.format("Protocol           ",
+                             "Fraction killed",
+                             "      J       ",
+                             "   1-alpha    ",
+                             "     beta     "))
+
+    print("-" * line_lenght) # Separator line
+
+    for row in data1:
+        print(row_format.format(*row))
+
+    print("-" * line_lenght) # Separator line
+    print("\n")
