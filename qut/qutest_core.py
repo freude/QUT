@@ -285,7 +285,10 @@ class QUT_PROJ(QUT, ABC):
 
         fid1 = chisquare(f_obs=arg1, f_exp=arg2, sum_check=False, ddof=len(arg1) - 2)
         fid2 = chisquare(f_obs=arg2, f_exp=arg1, sum_check=False, ddof=len(arg1) - 2)
-        return max(fid1.pvalue, fid2.pvalue)
+
+        pp = max(fid1.pvalue, fid2.pvalue)
+
+        return 1.0 / (1.0 + (pp ** (-3 / 4) - 1.0) ** (1 / 3))
 
     def workflow(self, qc):
         qc.measure_all()

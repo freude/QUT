@@ -1161,16 +1161,16 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "colorama" },
-    { name = "matplotlib" },
-    { name = "numpy" },
-    { name = "qiskit" },
-    { name = "qiskit-aer" },
-    { name = "qiskit-experiments" },
-    { name = "qiskit-ibm-runtime" },
-    { name = "scikit-learn" },
-    { name = "scipy" },
-    { name = "setuptools" },
+    { name = "colorama", specifier = "==0.4.6" },
+    { name = "matplotlib", specifier = "==3.11.2" },
+    { name = "numpy", specifier = "==2.5.3" },
+    { name = "qiskit", specifier = "==2.5.2" },
+    { name = "qiskit-aer", specifier = "==0.17.2" },
+    { name = "qiskit-experiments", specifier = "==0.14.2" },
+    { name = "qiskit-ibm-runtime", specifier = "==0.50.0" },
+    { name = "scikit-learn", specifier = "==1.9.1" },
+    { name = "scipy", specifier = "==1.18.1" },
+    { name = "setuptools", specifier = "==84.0.0" },
 ]
 
 [[package]]

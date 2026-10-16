@@ -15,16 +15,16 @@ classifiers = [
 ]
 
 dependencies = [
-    "colorama",
-    "matplotlib",
-    "numpy",
-    "qiskit",
-    "qiskit_aer",
-    "qiskit_experiments",
-    "qiskit_ibm_runtime",
-    "scikit_learn",
-    "scipy",
-    "setuptools",
+    "colorama == 0.4.6",
+    "matplotlib == 3.11.2",
+    "numpy == 2.5.3",
+    "qiskit == 2.5.2",
+    "qiskit_aer == 0.17.2",
+    "qiskit_experiments == 0.14.2",
+    "qiskit_ibm_runtime == 0.50.0",
+    "scikit_learn == 1.9.1",
+    "scipy == 1.18.1",
+    "setuptools == 84.0.0",
 ]
 
 [project.urls]

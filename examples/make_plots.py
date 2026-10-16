@@ -131,21 +131,10 @@ def make_plot2():
     time_noisy = np.load('time_noisy_rng.npy')
 
     for j in range(time_noiseless.shape[1]):
-        plt.plot(time_noiseless[:, j] / num_shots)
-    plt.yscale('log')
-    plt.show()
-
-    for j in range(time_noisy.shape[1]):
-        plt.plot(time_noisy[:, j] / num_shots)
-    plt.yscale('log')
-    plt.show()
-
-    for j in range(time_noiseless.shape[1]):
         print(time_noiseless[-1, j] / num_shots[-1])
 
     for j in range(time_noisy.shape[1]):
         print(time_noisy[-1, j] / num_shots[-1])
-
 
     col = ['g', 'red', 'tomato', 'limegreen']
     style = ['.-', '.-', '.-', '.-']
