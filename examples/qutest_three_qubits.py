@@ -1,11 +1,8 @@
-import subprocess
 import qut
 import numpy as np
 from code_samples_three_qubits import *
 import warnings
 import matplotlib.pyplot as plt
-import matplotlib as mpl
-import matplotlib.colors as colors
 from qut import likelihood
 from qiskit_ibm_runtime.fake_provider import FakeSydneyV2
 from qiskit_aer.noise import NoiseModel

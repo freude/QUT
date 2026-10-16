@@ -89,6 +89,6 @@ def main():
 
 if __name__ == '__main__':
 
-    # main()
+    main()
     make_plot1()
 
