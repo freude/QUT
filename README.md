@@ -9,10 +9,8 @@ The `qut`  framework does not require additional quantum resources beyond those 
 ### Install from source in the virtual enviroment
 
 ```bash
-git clone https://github.com/csiro-internal/QUT
+git clone https://github.com/freude/QUT.git
 cd QUT
-python3 -m venv my_env
-source my_env/bin/activate
 pip install .
 ```
 
