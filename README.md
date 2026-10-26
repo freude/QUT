@@ -14,6 +14,11 @@ uv sync
 source .venv/bin/activate
 ```
 
+### Run tests' evaluations
+```bash
+python examples/evaluation.py
+```
+
 ### Create your first test
 
 ```python
