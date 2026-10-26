@@ -4,7 +4,7 @@ The `qut` framework facilitates writing small and readable unit tests for quantu
 The `qut`  framework does not require additional quantum resources beyond those already needed by the application and utilizes quantum tomography or statistical tests on the data obtained from measurements.
 
 
-## Get started
+## Installation
 
 ### Requirements
 
@@ -24,6 +24,8 @@ source .venv/bin/activate
 ```bash
 python examples/evaluation.py
 ```
+
+## Usage
 
 ### Create your first test
 
