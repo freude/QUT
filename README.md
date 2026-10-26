@@ -6,6 +6,12 @@ The `qut`  framework does not require additional quantum resources beyond those 
 
 ## Get started
 
+### Requirements
+
+- Python 3.10 or later
+- [`uv`](https://docs.astral.sh/uv/) (for reproducible environments)
+
+
 ### Install from the source code with a virtual environment
 ```bash
 git clone https://github.com/freude/QUT.git
