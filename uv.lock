@@ -1145,7 +1145,7 @@ wheels = [
 [[package]]
 name = "qut"
 version = "1.0.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "colorama" },
     { name = "matplotlib" },

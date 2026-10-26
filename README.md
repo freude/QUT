@@ -10,7 +10,8 @@ The `qut`  framework does not require additional quantum resources beyond those 
 ```bash
 git clone https://github.com/freude/QUT.git
 cd QUT
-pip install .
+uv sync
+source .venv/bin/activate
 ```
 
 ### Create your first test
