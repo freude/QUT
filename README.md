@@ -6,7 +6,7 @@ The `qut`  framework does not require additional quantum resources beyond those 
 
 ## Get started
 
-### Install from the source
+### Install from the source code with a virtual environment
 ```bash
 git clone https://github.com/freude/QUT.git
 cd QUT
